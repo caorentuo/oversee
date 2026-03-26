@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  backend:
+    build: 
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: oversee-backend
+    restart: always
+    volumes:
+      - ./data:/app/api/data # 持久化数据库文件
+    environment:
+      - DATABASE_URL=sqlite:///./api/data/oversee.db
+    ports:
+      - "8000:8000" # 如果您不需要直接访问后端，可以注释掉这行
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: oversee-frontend
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
