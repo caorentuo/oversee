@@ -10,6 +10,9 @@ RUN npm install
 # Copy source code
 COPY . .
 
+# Fix permissions for node_modules binaries
+RUN chmod -R +x node_modules/.bin
+
 # Build the app
 RUN npm run build
 
