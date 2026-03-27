@@ -3,7 +3,7 @@ import { Plus, Edit2, Trash2, X } from 'lucide-react';
 import api from '../lib/api';
 
 interface User {
-  id: int;
+  id: number;
   username: string;
   name: string;
   department: string;
